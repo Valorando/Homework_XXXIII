@@ -13,6 +13,8 @@ namespace Homework_19_10_II
     public partial class Form1 : Form
     {
         private List<Point> points = new List<Point>();
+        private Color pointColor = Color.Red;
+        private Color lineColor = Color.Red;
 
         public Form1()
         {
@@ -27,11 +29,11 @@ namespace Homework_19_10_II
             if (points.Count >= 2)
             {
                 Graphics graphics = panel1.CreateGraphics();
-                Pen pen = new Pen(Color.Red, 5);
+                Pen linePen = new Pen(lineColor, 2f);
 
                 for (int i = 1; i < points.Count; i++)
                 {
-                    graphics.DrawLine(pen, points[i - 1], points[i]);
+                    graphics.DrawLine(linePen, points[i - 1], points[i]);
                 }
             }
         }
@@ -42,8 +44,9 @@ namespace Homework_19_10_II
             
             using (Graphics graphics = panel1.CreateGraphics())
             {
-               
-                graphics.FillEllipse(Brushes.Red, clickPoint.X - 1, clickPoint.Y - 1, 8, 8);
+                Pen pointPen = new Pen(pointColor, 5);
+
+                graphics.FillEllipse(new SolidBrush(pointColor), clickPoint.X - 1, clickPoint.Y - 1, 8, 8);
 
                 points.Add(clickPoint); 
             }
@@ -81,6 +84,50 @@ namespace Homework_19_10_II
 
             graphics.DrawLine(axisPen, cellWidth, panel1.Height, cellWidth, 0);
             graphics.FillPolygon(arrowBrush, new Point[] { new Point(cellWidth - 5, 10), new Point(cellWidth + 5, 10), new Point(cellWidth, 0) });
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            panel1.Controls.Clear();
+            points.Clear();
+            panel1.Invalidate();
+
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            pointColor = Color.Red; 
+            lineColor = Color.Red;  
+        }
+
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            pointColor = Color.Blue; 
+            lineColor = Color.Blue;  
+        }
+
+        private void toolStripButton3_Click(object sender, EventArgs e)
+        {
+            pointColor = Color.Green;
+            lineColor = Color.Green;
+        }
+
+        private void toolStripButton4_Click(object sender, EventArgs e)
+        {
+            pointColor = Color.Orange;
+            lineColor = Color.Orange;
+        }
+
+        private void toolStripButton5_Click(object sender, EventArgs e)
+        {
+            pointColor = Color.Violet;
+            lineColor = Color.Violet;
+        }
+
+        private void toolStripButton6_Click(object sender, EventArgs e)
+        {
+            pointColor = Color.Black;
+            lineColor = Color.Black;
         }
     }
 }
